@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Layout Example</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/layout-default-latest.css">
+    <link rel="stylesheet" href="css/app.css">
+    <script src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script src="js/libs/jquery-2.0.3.min.js"></script>
+    <script src="js/libs/jquery.layout-latest.js"></script>
+    <script src="http://layout.jquery-dev.net/lib/js/jquery-ui-latest.js"></script>
+    <script src="js/libs/angular.js"></script>
+    <script src="js/libs/angular-ui-router.js"></script>
+    <script src="js/libs/bootstrap.min.js"></script>
+</head>
+
+<body id="ngLandlord" ng-controller="AppCtrl">
+    <div class="side-nav" ng-controller="SideNavCtrl">
+        <div class="side-nav-content">
+            <div ng-include="'js/app/templates/side-nav.html'"></div>
+        </div>
+    </div>
+    <div class="main-wrapper">
+        <div class="app-header" ng-controller="HeaderCtrl">
+            <div class="row">
+                <a class="header-block-button">My Awesome Logo Here</a>
+            </div>
+        </div>
+        <div class="main-panel" ng-controller="MainPanelCtrl">
+            <div class="content">
+                <div ui-view="panel"></div>
+            </div>
+        </div>
+        <div class="main-content" ng-controller="MainContentCtrl">
+            <div class="flyout-panel" ng-controller="FlyoutCtrl">
+                <div class="flyout-panel-content">
+                    <div ui-view="flyout"></div>
+                </div>
+            </div>
+            <div class="map-panel" id="map_canvas" ng-controller="MapCtrl"></div>
+        </div>
+    </div>
+    <script>
+        angular.module('ngLandlord', ['ui.router']);
+    </script>
+    <script src="js/app/controllers.js"></script>
+    <script src="js/app/LayoutManager.js"></script>
+    <script src="js/app/models.js"></script>
+    <script src="js/app/app.js"></script>
+</body>
+
+</html>
