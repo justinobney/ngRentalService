@@ -137,6 +137,7 @@
     <Content Include="App\app.main.js" />
     <Content Include="App\app.states.messages.js" />
     <Content Include="App\app.states.misc.js" />
+    <Content Include="App\app.states.properties.js" />
     <Content Include="App\app.states.settings.js" />
     <Content Include="App\common\AppCtrl.js" />
     <Content Include="App\common\Common.js" />
@@ -152,6 +153,8 @@
     <Content Include="App\modal\ModalService.js" />
     <Content Include="App\navigation\menu.html" />
     <Content Include="App\navigation\NavCtrl.js" />
+    <Content Include="App\properties\properties.panel.html" />
+    <Content Include="App\properties\PropertiesPanelCtrl.js" />
     <Content Include="App\settings\settings.panel.html" />
     <Content Include="bootstrapper.js" />
     <Content Include="Assets\css\app.css" />
@@ -239,7 +242,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\directives\" />
-    <Folder Include="App\properties\" />
     <Folder Include="App\tenants\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
