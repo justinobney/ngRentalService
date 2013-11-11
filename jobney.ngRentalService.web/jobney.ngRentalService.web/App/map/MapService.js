@@ -3,8 +3,8 @@
 
     var app = angular.module('ngRentalService');
 
-    app.service('MapService', ['$q', '$http', '$templateCache', '$interpolate',
-        function ($q, $http, $templateCache, $interpolate) {
+    app.service('MapService', ['$http', '$templateCache', '$interpolate', 'Common',
+        function ($http, $templateCache, $interpolate, Common) {
             var service = {};
 
             var geocoder;
@@ -35,7 +35,7 @@
             };
 
             service.geocodeAddress = function (address) {
-                var deferred = $q.defer();
+                var deferred = Common.$q.defer();
 
                 if (geoCache[address]) {
                     deferred.resolve(geoCache[address]);
@@ -98,6 +98,8 @@
 
                     myMarkers.push(marker);
                 });
+
+                fitMarkerBoundsDebounced();
             };
 
             service.openMarkerInfo = function (fnFindMarker) {
@@ -177,6 +179,16 @@
                         ib.open(map, this);
                     });
                 });
+            }
+
+            var fitMarkerBoundsDebounced = _.debounce(fitMarkerBounds, 250);
+
+            function fitMarkerBounds() {
+                var latlngbounds = new google.maps.LatLngBounds();
+                for (var i = 0; i < myMarkers.length; i++) {
+                    latlngbounds.extend(myMarkers[i].getPosition());
+                }
+                map.fitBounds(latlngbounds);
             }
 
             return service;
