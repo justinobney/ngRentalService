@@ -104,13 +104,8 @@
 
 /*#region Fly-out panel */
 
-.flyout-panel {
-    box-shadow: inset 0px 0px 6px #000;
-}
-
 .flyout-panel-content {
     padding-bottom: 30px;
-    padding-top: 10px;
 }
 
 /*#endregion */
@@ -126,11 +121,29 @@
     color: #777;
 }
 
+.message-details > * {
+    padding: 10px 15px;
+}
+
+.message-header {
+    color: #333;
+    background-color: #F5F5F5;
+    border-color: #DDD;
+}
+.message-from {
+    border: 1px solid #DDD;
+}
+
 .list-group-item.message {  
     border-left: solid 3px #FFF
 }
 .list-group-item.message:hover {  
     border-left: solid 3px #4590D1
+}
+
+.message>a {
+    text-decoration: none;
+    color: #333;
 }
 
 /*#endregion */
