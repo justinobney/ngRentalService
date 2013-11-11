@@ -11,7 +11,7 @@
             //PermissionService.initStatePermissionWatch($rootScope);
 
             var mapOptions = {
-                zoom: 8,
+                zoom: 12,
                 center: MapService.convertToGoogleLatLng(30.3499, -90.9971),
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };

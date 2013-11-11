@@ -1,0 +1,23 @@
+﻿(function () {
+    "use strict";
+
+    var app = angular.module('ngRentalService');
+
+    app.config(['$stateProvider', function ($stateProvider) { //$urlRouterProvider
+        $stateProvider
+            .state('properties', {
+                url: '/properties',
+                views: {
+                    "panel": {
+                        templateUrl: "app/properties/properties.panel.html"
+                    }
+                },
+                data: {
+                    uiStateMap: {
+                        drawer: false,
+                        modal: false
+                    }
+                }
+            });
+    }]);
+})();
