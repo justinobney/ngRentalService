@@ -1,0 +1,101 @@
+.side-nav, .app-footer {
+    background-color: #262d40;
+}
+.app-header {
+    background-color: #4590d1;
+}
+.main-panel {
+    background-color: #C7C7C7;
+    z-index: 1 !important;
+
+    border-right: solid 3px #162F59;
+}
+
+.main-panel .content {
+    background-color: #C7C7C7;
+}
+
+.main-panel .header {
+    padding: 6px 5px;
+}
+
+.flyout-panel {
+    box-shadow: inset 0px 0px 6px #000;
+}
+
+.flyout-panel-content {
+    padding-bottom: 30px;
+    padding-top: 10px;
+}
+
+.header-block-button {
+    background-color: #3473a8;
+    color: #FFF;
+    display: block;
+    float: left;
+    line-height: 50px;
+    font-size: 15px;
+    padding: 0 20px;
+    border-right: inset 1px #3473a8;
+    box-shadow: inset 0px 0px 1px #c2c2c2;
+}
+
+.side-nav-content {
+    padding-top: inherit;
+}
+
+.side-nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.side-nav li {
+    border-top: solid 1px #344F64;
+    border-bottom: solid 1px #0A0A0A;
+}
+
+.side-nav li.last {
+    border-bottom: none;
+}
+
+.side-nav ul li a {
+    color: #B8B8B8;
+    display: block;
+    text-align: center;
+    padding: 5px;
+    font-size: 14px;
+          
+}
+
+.side-nav ul li.active a, .side-nav ul li a:hover {  
+    margin: auto;    
+    border-bottom-left-radius: inherit;    
+    border-right: none;  
+    color: #FFF;
+    text-decoration: none;
+}
+
+.side-nav ul li.active a i, .side-nav ul li a:hover i {
+    text-shadow: 1px 1px #428BCA;
+}
+
+.app-footer {
+    color: #FFF;
+    text-align: right;
+    padding: 6px 25px;
+}
+
+.list-group-item.header {
+    background-color: #e7ebf4;
+    font-family: Helvetica;
+    font-size: 12px;
+    color: #777;
+}
+.message-title {
+    font-size: 18px;
+}
+.message-timestamp {
+    font-size: 10px;
+    float: right;
+    color: #777;
+}
