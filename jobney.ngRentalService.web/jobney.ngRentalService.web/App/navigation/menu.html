@@ -1,0 +1,27 @@
+﻿<ul data-ng-controller="NavCtrl">
+    <li ng-class="menuActive('messages')">
+        <a ui-sref="messages">
+            <h2><i class="fa fa-comments"></i></h2>
+            Messages
+        </a>
+    </li>
+    <li ng-class="menuActive('properties')">
+        <a ui-sref="properties">
+            <h2><i class="fa fa-home"></i></h2>
+            Properties
+        </a>
+    </li>
+    <li ng-class="menuActive('tenants')">
+        <a ui-sref="tenants">
+            <h2><i class="fa fa-user"></i></h2>
+            Tenants
+        </a>
+    </li>
+    <li ng-class="menuActive('settings')">
+        <a ui-sref="settings">
+            <h2><i class="fa fa-cog"></i></h2>
+            Settings
+        </a>
+    </li>
+    <li class="last"></li>
+</ul>

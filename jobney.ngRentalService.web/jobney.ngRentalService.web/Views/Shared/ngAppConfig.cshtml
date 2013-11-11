@@ -1,0 +1,20 @@
+﻿@model dynamic
+
+<script>
+    (function() {
+        "use strict";
+
+        // This is a good place to config up runtime options that are MVC/razor specific.
+        var app = angular.module('ngRentalService', ['ui.router']);
+
+        // By declaring routes here, we don't have to worry about url structure.
+        // MVC will handle this.
+        app.value('RouteConfig', {
+            base: '@Url.Content("~/")',
+            properties: {
+                all: ''
+            }
+        });
+    })();
+
+</script>

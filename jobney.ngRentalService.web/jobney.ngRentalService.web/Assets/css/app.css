@@ -1,0 +1,136 @@
+/*#region Main Layout */
+
+.container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0;
+    margin: 0 !important;
+}
+
+/*#endregion */
+
+/*#region Header */
+
+.app-header {
+    background-color: #4590d1;
+}
+
+.header-block-button {
+    background-color: #3473a8;
+    color: #FFF;
+    display: block;
+    float: left;
+    line-height: 50px;
+    font-size: 15px;
+    padding: 0 20px;
+    border-right: inset 1px #3473a8;
+    box-shadow: inset 0px 0px 1px #c2c2c2;
+}
+
+/*#endregion */
+
+/*#region Side Nav */
+
+.side-nav {
+    background-color: #262d40;
+}
+
+.side-nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.side-nav li {
+    border-top: solid 1px #344F64;
+    border-bottom: solid 1px #0A0A0A;
+}
+
+.side-nav li.last {
+    border-bottom: none;
+}
+
+.side-nav ul li a {
+    color: #B8B8B8;
+    display: block;
+    text-align: center;
+    padding: 5px;
+    font-size: 14px;
+          
+}
+
+.side-nav ul li.active a, .side-nav ul li a:hover {  
+    margin: auto;    
+    border-bottom-left-radius: inherit;    
+    border-right: none;  
+    color: #FFF;
+    text-decoration: none;
+}
+
+.side-nav ul li.active a i, .side-nav ul li a:hover i {
+    text-shadow: 1px 1px #428BCA;
+}
+
+/*#endregion */
+
+/*#region Main Panel */
+
+.main-panel {
+    background-color: #C7C7C7;
+    z-index: 1 !important;
+
+    border-right: solid 3px #162F59;
+}
+
+.main-panel .content {
+    background-color: #C7C7C7;
+}
+
+.main-panel .header {
+    padding: 6px 5px;
+}
+
+.list-group-item.header {
+    background-color: #e7ebf4;
+    font-family: Helvetica;
+    font-size: 12px;
+    color: #777;
+}
+
+.list-group-item:hover {  
+    background-color: #F7F7F7;
+}
+
+/*#endregion */
+
+/*#region Fly-out panel */
+
+.flyout-panel {
+    box-shadow: inset 0px 0px 6px #000;
+}
+
+.flyout-panel-content {
+    padding-bottom: 30px;
+    padding-top: 10px;
+}
+
+/*#endregion */
+
+/*#region Messages */
+
+.message-title {
+    font-size: 18px;
+}
+.message-timestamp {
+    font-size: 10px;
+    float: right;
+    color: #777;
+}
+
+.list-group-item.message {  
+    border-left: solid 3px #FFF
+}
+.list-group-item.message:hover {  
+    border-left: solid 3px #4590D1
+}
+
+/*#endregion */

@@ -1,0 +1,15 @@
+﻿<ul class="list-group" data-ng-controller="MessagesPanelCtrl">
+    <li class="list-group-item header">From (header)
+    </li>
+    <li data-ng-repeat="message in messages" class="list-group-item message">
+        <a data-ng-href="#messages/{{message.id}}">
+            <div class="message-title">
+                {{message.from}}
+            <span class="message-timestamp">{{message.timestamp}}</span>
+            </div>
+            <p>
+                {{message.body}}
+            </p>
+        </a>
+    </li>
+</ul>
