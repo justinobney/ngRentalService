@@ -89,7 +89,7 @@
     padding: 6px 5px;
 }
 
-.list-group-item.header {
+.list-group-item.header, .list-group-item.header:hover {
     background-color: #e7ebf4;
     font-family: Helvetica;
     font-size: 12px;
