@@ -3,47 +3,48 @@
 
     var app = angular.module('ngRentalService');
 
-    app.controller('PropertiesPanelCtrl', ['$scope', 'Common', 'MapService', function ($scope, Common, MapService) {
-        // TODO: move to service
-        var fakeProperties = [
-            { id: 1, address: '10000 Perkins Rowe', city: 'Baton Rouge', state: 'LA', zipcode: '70809' },
-            { id: 2, address: '4200 Essen Ln', city: 'Baton Rouge', state: 'LA', zipcode: '70809' },
-            { id: 3, address: '11585 Lake Sherwood Ave N', city: 'Baton Rouge', state: 'LA', zipcode: '70816' },
-            { id: 4, address: '2344 W Contour Dr', city: 'Baton Rouge', state: 'LA', zipcode: '70809' },
-            { id: 5, address: '782 Baird Dr', city: 'Baton Rouge', state: 'LA', zipcode: '70808' }
-        ];
+    app.controller('PropertiesPanelCtrl', ['$scope', 'Common', 'MapService',
+        function ($scope, Common, MapService) {
+            // TODO: move to service
+            var fakeProperties = [
+                { id: 1, address: '10000 Perkins Rowe', city: 'Baton Rouge', state: 'LA', zipcode: '70809' },
+                { id: 2, address: '4200 Essen Ln', city: 'Baton Rouge', state: 'LA', zipcode: '70809' },
+                { id: 3, address: '11585 Lake Sherwood Ave N', city: 'Baton Rouge', state: 'LA', zipcode: '70816' },
+                { id: 4, address: '2344 W Contour Dr', city: 'Baton Rouge', state: 'LA', zipcode: '70809' },
+                { id: 5, address: '782 Baird Dr', city: 'Baton Rouge', state: 'LA', zipcode: '70808' }
+            ];
 
-        var config = {
-            propertyInfoWindowTemplate: Common.routeConfig.base + 'App/properties/properties.infoWindow.html'
-        };
+            var config = {
+                propertyInfoWindowTemplate: Common.routeConfig.base + 'App/properties/properties.infoWindow.html'
+            };
 
-        $scope.showInfo = function (property) {
-            MapService.openMarkerInfo(function(marker) {
-                return marker.model.id == property.id;
-            });
-        };
-
-        activate();
-
-        function activate() {
-            $scope.properties = fakeProperties;
-
-            MapService.clearMap();
-            
-            angular.forEach($scope.properties, function (property) {
-                var address = property.address;
-                MapService.geocodeAddress(address).then(function (location) {
-                    var geocodedPlace = [location, property];
-                    plotLocation([geocodedPlace]);
+            $scope.showInfo = function (property) {
+                MapService.openMarkerInfo(function (marker) {
+                    return marker.model.id == property.id;
                 });
-            });
-        }
-        
-        function plotLocation(placeWithLocationArray) {
-            MapService.plotPoints(placeWithLocationArray, {
-                clearPrevious: false,
-                infoBoxTemplate: config.propertyInfoWindowTemplate
-            });
-        }
-    }]);
+            };
+
+            activate();
+
+            function activate() {
+                $scope.properties = fakeProperties;
+
+                MapService.clearMap();
+
+                angular.forEach($scope.properties, function (property) {
+                    var address = property.address;
+                    MapService.geocodeAddress(address).then(function (location) {
+                        var geocodedPlace = [location, property];
+                        plotLocation([geocodedPlace]);
+                    });
+                });
+            }
+
+            function plotLocation(placeWithLocationArray) {
+                MapService.plotPoints(placeWithLocationArray, {
+                    clearPrevious: false,
+                    infoBoxTemplate: config.propertyInfoWindowTemplate
+                });
+            }
+        }]);
 })()
