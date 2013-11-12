@@ -121,6 +121,14 @@
     padding-bottom: 30px;
 }
 
+.flyout-panel .panel-header {
+    padding: 10px 15px;
+    color: #333;
+    background-color: #F5F5F5;
+    border-color: #DDD;
+    border-bottom: solid 1px #DDD;
+}
+
 /*#endregion */
 
 /*#region Map */
