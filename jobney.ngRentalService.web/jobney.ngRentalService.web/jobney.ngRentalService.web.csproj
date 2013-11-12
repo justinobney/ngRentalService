@@ -158,6 +158,7 @@
     <Content Include="App\properties\properties.details.html" />
     <Content Include="App\properties\properties.infoWindow.html" />
     <Content Include="App\properties\properties.panel.html" />
+    <Content Include="App\properties\PropertiesDetailsCtrl.js" />
     <Content Include="App\properties\PropertiesPanelCtrl.js" />
     <Content Include="App\settings\settings.panel.html" />
     <Content Include="bootstrapper.js" />
