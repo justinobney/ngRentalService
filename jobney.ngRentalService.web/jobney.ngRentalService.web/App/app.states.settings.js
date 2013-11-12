@@ -5,11 +5,17 @@
 
     app.config(['$stateProvider', function ($stateProvider) { //$urlRouterProvider
         $stateProvider
-            .state('/settings', {
-                url: 'settings',
+            .state('settings', {
+                url: '/settings',
                 views: {
                     "panel": {
                         templateUrl: "app/settings/settings.panel.html"
+                    }
+                },
+                data: {
+                    uiStateMap: {
+                        drawer: false,
+                        modal: false
                     }
                 }
             });
