@@ -5,7 +5,7 @@
 
     app.config(['$stateProvider', function ($stateProvider) { //$urlRouterProvider
         $stateProvider
-            .state('settings', {
+            .state('/settings', {
                 url: 'settings',
                 views: {
                     "panel": {

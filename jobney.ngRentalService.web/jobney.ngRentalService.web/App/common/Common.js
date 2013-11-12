@@ -7,9 +7,9 @@
     var app = angular.module('ngRentalService');
 
     app.factory('Common',
-        ['$q', '$rootScope', '$timeout', 'CommonConfig', common]);
+        ['$q', '$rootScope', '$timeout', 'CommonConfig', 'RouteConfig', common]);
     
-    function common($q, $rootScope, $timeout, CommonConfig) {
+    function common($q, $rootScope, $timeout, CommonConfig, RouteConfig) {
         var throttles = {};
 
         var service = {
@@ -21,7 +21,8 @@
             activateController: activateController,
             debouncedThrottle: debouncedThrottle,
             textContains: textContains,
-            coerceToBoolean: coerceToBoolean
+            coerceToBoolean: coerceToBoolean,
+            routeConfig: RouteConfig
         };
 
         return service;
