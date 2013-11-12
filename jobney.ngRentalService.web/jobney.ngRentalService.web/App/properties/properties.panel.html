@@ -7,9 +7,9 @@
         <div class="clearfix"></div>
     </li>
     <li data-ng-repeat="property in properties" class="list-group-item">
-        <div class="row">
+        <div class="row" ng-click="showInfo({{property}})">
             <div class="col-xs-3">
-                <img src="http://placehold.it/150x150" alt="" class="img-rounded img-responsive" />
+                <img src="http://lorempixel.com/150/150/city/{{property.id}}" alt="" class="img-rounded img-responsive" />
             </div>
             <div class="col-xs-9">
                 <cite title="Address">
@@ -19,7 +19,7 @@
                     <br />
                     {{property.zipcode}}
                     <br />
-                    <a ng-click="showInfo({{property.id}})"><i class="fa fa-map-marker"></i> Open Info</a>
+                    <a ng-href="#/properties/details/{{property.id}}"><i class="fa fa-pencil"></i> Edit</a>
                 </cite>
             </div>
         </div>

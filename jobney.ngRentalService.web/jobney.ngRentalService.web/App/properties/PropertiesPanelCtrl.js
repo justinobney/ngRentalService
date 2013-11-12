@@ -17,6 +17,12 @@
             propertyInfoWindowTemplate: Common.routeConfig.base + 'App/properties/properties.infoWindow.html'
         };
 
+        $scope.showInfo = function (property) {
+            MapService.openMarkerInfo(function(marker) {
+                return marker.model.id == property.id;
+            });
+        };
+
         activate();
 
         function activate() {

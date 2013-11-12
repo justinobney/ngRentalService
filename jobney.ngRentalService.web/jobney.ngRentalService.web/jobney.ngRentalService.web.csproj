@@ -155,6 +155,7 @@
     <Content Include="App\modal\ModalService.js" />
     <Content Include="App\navigation\menu.html" />
     <Content Include="App\navigation\NavCtrl.js" />
+    <Content Include="App\properties\properties.infoWindow.html" />
     <Content Include="App\properties\properties.panel.html" />
     <Content Include="App\properties\PropertiesPanelCtrl.js" />
     <Content Include="App\settings\settings.panel.html" />
