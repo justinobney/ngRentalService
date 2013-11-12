@@ -29,6 +29,26 @@
             service.panTo = function (latLng) {
                 map.panTo(latLng);
             };
+            
+            service.offsetMap = function (options) {
+                if (options.offsetRight) {
+                    Common.$timeout(function () {
+                        map.panBy((-1 * options.offsetRight), 0);
+                    }, 0);
+                } else if (options.offsetLeft) {
+                    Common.$timeout(function () {
+                        map.panBy(options.offsetLeft, 0);
+                    }, 0);
+                } else if (options.offsetTop) {
+                    Common.$timeout(function () {
+                        map.panBy(0, (-1 * options.offsetTop));
+                    }, 0);
+                } else if (options.offsetBottom) {
+                    Common.$timeout(function () {
+                        map.panBy(0, options.offsetBottom);
+                    }, 0);
+                }
+            };
 
             service.convertToGoogleLatLng = function (lat, lng) {
                 return new google.maps.LatLng(lat, lng);
