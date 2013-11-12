@@ -1,9 +1,9 @@
-﻿(function () {
+﻿(function() {
     "use strict";
 
     var app = angular.module('ngRentalService');
 
-    app.config(['$stateProvider', function ($stateProvider) { //$urlRouterProvider
+    app.config(['$stateProvider', function($stateProvider) { //$urlRouterProvider
         $stateProvider
             .state('properties', {
                 url: '/properties',
@@ -15,6 +15,20 @@
                 data: {
                     uiStateMap: {
                         drawer: false,
+                        modal: false
+                    }
+                }
+            })
+            .state('properties.new', {
+                url: '/new',
+                views: {
+                    "drawer@": {
+                        templateUrl: "app/properties/properties.details.html"
+                    }
+                },
+                data: {
+                    uiStateMap: {
+                        drawer: true,
                         modal: false
                     }
                 }
