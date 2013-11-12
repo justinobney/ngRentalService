@@ -18,6 +18,20 @@
                         modal: false
                     }
                 }
+            })
+            .state('properties.detail', {
+                url: '/details/:id',
+                views: {
+                    "drawer@": {
+                        templateUrl: "app/properties/properties.details.html"
+                    }
+                },
+                data: {
+                    uiStateMap: {
+                        drawer: true,
+                        modal: false
+                    }
+                }
             });
     }]);
 })();
