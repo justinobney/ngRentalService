@@ -3,7 +3,7 @@
 
     var app = angular.module('ngRentalService');
 
-    app.controller('PropertiesPanelCtrl', ['$scope', 'MapService', function ($scope, MapService) {
+    app.controller('PropertiesPanelCtrl', ['$scope', 'Common', 'MapService', function ($scope, Common, MapService) {
         // TODO: move to service
         var fakeProperties = [
             { id: 1, address: '10000 Perkins Rowe', city: 'Baton Rouge', state: 'LA', zipcode: '70809' },
@@ -12,6 +12,10 @@
             { id: 4, address: '2344 W Contour Dr', city: 'Baton Rouge', state: 'LA', zipcode: '70809' },
             { id: 5, address: '782 Baird Dr', city: 'Baton Rouge', state: 'LA', zipcode: '70808' }
         ];
+
+        var config = {
+            propertyInfoWindowTemplate: Common.routeConfig.base + 'App/properties/properties.infoWindow.html'
+        };
 
         activate();
 
@@ -31,7 +35,8 @@
         
         function plotLocation(placeWithLocationArray) {
             MapService.plotPoints(placeWithLocationArray, {
-                clearPrevious: false
+                clearPrevious: false,
+                infoBoxTemplate: config.propertyInfoWindowTemplate
             });
         }
     }]);
