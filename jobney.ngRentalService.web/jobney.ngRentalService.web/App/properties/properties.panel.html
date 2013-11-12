@@ -1,27 +1,25 @@
 ﻿<ul class="list-group" data-ng-controller="PropertiesPanelCtrl">
-    <li class="list-group-item header">
-        My Properties
+    <li class="list-group-item header">My Properties
         <a ui-sref="properties.new" class="pull-right btn btn-xs btn-default">
-            <i class="fa fa-plus"></i> Add Property
+            <i class="fa fa-plus"></i>Add Property
         </a>
         <div class="clearfix"></div>
     </li>
     <li data-ng-repeat="property in properties" class="list-group-item">
-        <div class="row" ng-click="showInfo({{property}})">
-            <div class="col-xs-3">
-                <img src="http://lorempixel.com/150/150/city/{{property.id}}" alt="" class="img-rounded img-responsive" />
-            </div>
-            <div class="col-xs-9">
-                <cite title="Address">
-                    {{property.address}}
+        <div class="row">
+            <a ui-sref="properties" ng-click="showInfo({{property}})" class="property-link">
+                <div class="col-xs-3">
+                    <img src="http://lorempixel.com/150/150/city/{{property.id}}" alt="" class="img-rounded img-responsive" />
+                </div>
+                <div class="col-xs-9">
+                    <cite title="Address">{{property.address}}
                     <br />
-                    {{property.city}}, {{property.state}}
+                        {{property.city}}, {{property.state}}
                     <br />
-                    {{property.zipcode}}
-                    <br />
-                    <a ng-href="#/properties/details/{{property.id}}"><i class="fa fa-pencil"></i> Edit</a>
-                </cite>
-            </div>
+                        {{property.zipcode}}
+                    </cite>
+                </div>
+            </a>
         </div>
     </li>
 </ul>
