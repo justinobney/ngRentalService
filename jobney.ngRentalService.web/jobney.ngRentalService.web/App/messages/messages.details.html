@@ -1,11 +1,11 @@
-﻿<div class="message-details">
+﻿<div class="message-details" data-ng-controller="MessagesDetailsCtrl">
     <div class="message-header">
-        Message Subject
+        {{message.timestamp}}
     </div>
     <div class="message-from">
-        John Smith
+        {{message.from}}
     </div>
     <p>
-        This is the message content
+        {{message.body}}
     </p>
 </div>

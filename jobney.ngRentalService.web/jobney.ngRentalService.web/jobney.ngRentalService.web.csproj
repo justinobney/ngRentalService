@@ -145,8 +145,10 @@
     <Content Include="App\common\PermissionService.js" />
     <Content Include="App\common\UserService.js" />
     <Content Include="App\map\MapService.js" />
+    <Content Include="App\messages\MessagesDetailsCtrl.js" />
     <Content Include="App\messages\messages.details.html" />
     <Content Include="App\messages\messages.panel.html" />
+    <Content Include="App\messages\MessageService.js" />
     <Content Include="App\messages\MessagesPanelCtrl.js" />
     <Content Include="App\modal\modal.html" />
     <Content Include="App\modal\ModalCtrl.js" />
@@ -209,6 +211,8 @@
     <Content Include="Assets\css\font\Univers-57-Condensed-webfont.eot" />
     <Content Include="Assets\css\font\Univers-57-Condensed-webfont.ttf" />
     <Content Include="Assets\css\font\Univers-57-Condensed-webfont.woff" />
+    <None Include="Properties\PublishProfiles\ngRentalManager - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\ngRentalManager - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
