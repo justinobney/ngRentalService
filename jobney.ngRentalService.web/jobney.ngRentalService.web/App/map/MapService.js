@@ -176,6 +176,27 @@
                 polygon.setMap(map);
             };
 
+            service.convertPlaceResultToPlace = function (placeResult) {
+                var place = {
+                    streetNumber: find('street_number'),
+                    route: find('route'),
+                    locality: find('locality'),
+                    state: find('administrative_area_level_1'),
+                    country: find('country'),
+                    postalCode: find('postal_code')
+                };
+
+                return place;
+
+                function find(typeName) {
+                    var found = _.find(placeResult.address_components, function(val) {
+                        return val.types.indexOf(typeName) > -1;
+                    });
+                    
+                    return (found) ? found.long_name : '';
+                }
+            };
+
             function createInfoBox(marker, options, model) {
 
                 $http.get(options.infoBoxTemplate, {
