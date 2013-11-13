@@ -144,6 +144,7 @@
     <Content Include="App\common\LayoutManager.js" />
     <Content Include="App\common\PermissionService.js" />
     <Content Include="App\common\UserService.js" />
+    <Content Include="App\directives\ngAutocomplete.js" />
     <Content Include="App\map\MapService.js" />
     <Content Include="App\messages\MessagesDetailsCtrl.js" />
     <Content Include="App\messages\messages.details.html" />
@@ -250,7 +251,6 @@
     <Content Include="Views\Shared\_Header.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\directives\" />
     <Folder Include="App\tenants\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
