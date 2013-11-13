@@ -10,7 +10,7 @@
 
     var app = angular.module('ngRentalService');
 
-    app.controller('AppCtrl', ['$scope', function ($scope) {
+    app.controller('AppCtrl', [function () {
         
     }]);
 })()

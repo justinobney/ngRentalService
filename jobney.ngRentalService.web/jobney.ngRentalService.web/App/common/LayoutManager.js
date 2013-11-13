@@ -3,7 +3,7 @@
 
     var app = angular.module('ngRentalService');
 
-    app.factory('LayoutManager', ['Common', function (Common, ModalService) {
+    app.factory('LayoutManager', ['Common', 'MapService', function (Common, MapService) {
         var LayoutManager = {};
         var $root;
         var uiStateMap = {};
@@ -31,10 +31,12 @@
 
         LayoutManager.showDrawer = function () {
             this.layouts.flyOut.open('west', true);
+            handleInfoboxOffset();
         };
 
         LayoutManager.hideDrawer = function () {
             this.layouts.flyOut.close('west', true);
+            handleInfoboxOffset();
         };
         
         LayoutManager.redraw = function performRedraw() {
@@ -48,6 +50,8 @@
             $root = $rootScope;
             
             $root.$on('$stateChangeStart', handleStateChange);
+
+            //$root.$on(Common.events.INFOBOX_OPEN, handleInfoboxOffset);
 
             function handleStateChange(event, toState, toParams, fromState, fromParams) {
                 if (toState.data && toState.data.uiStateMap) {
@@ -75,6 +79,21 @@
                 uiStateMap.modal = Common.coerceToBoolean(newState.modal); // coerce the boolean values when possibly undefined
             }
         };
+
+        function handleInfoboxOffset() {
+            var flyout = LayoutManager.panels.flyOut;
+            var map = LayoutManager.panels.maps;
+            var opts = {};
+            var visibleWidth = map.pane.width() - flyout.pane.width();
+
+            if (!flyout.state.isClosed) {
+                opts.offsetRight = visibleWidth / 2;
+            } else {
+                opts.offsetLeft = visibleWidth / 2;
+            }
+
+            MapService.offsetMap(opts);
+        }
 
         return LayoutManager;
     }]);
