@@ -23,7 +23,7 @@
                 url: '/new',
                 views: {
                     "drawer@": {
-                        templateUrl: "app/properties/properties.details.html"
+                        templateUrl: "app/properties/properties.new.html"
                     }
                 },
                 data: {
