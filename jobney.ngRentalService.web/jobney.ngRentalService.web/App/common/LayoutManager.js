@@ -31,12 +31,12 @@
 
         LayoutManager.showDrawer = function () {
             this.layouts.flyOut.open('west', true);
-            handleInfoboxOffset();
+            LayoutManager.handleInfoboxOffset();
         };
 
         LayoutManager.hideDrawer = function () {
             this.layouts.flyOut.close('west', true);
-            handleInfoboxOffset();
+            LayoutManager.handleInfoboxOffset();
         };
         
         LayoutManager.redraw = function performRedraw() {
@@ -80,7 +80,7 @@
             }
         };
 
-        function handleInfoboxOffset() {
+        LayoutManager.handleInfoboxOffset = function() {
             var flyout = LayoutManager.panels.flyOut;
             var map = LayoutManager.panels.maps;
             var opts = {};
