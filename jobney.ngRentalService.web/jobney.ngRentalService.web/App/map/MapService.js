@@ -14,48 +14,8 @@
             var geoCache = {};
             var defaultAnimation = google.maps.Animation.DROP;
 
-            service.openMarkerInfo = function (fnFindMarker) {
-                if (!myMarkers.length)
-                    return;
-
-                var currentMarker = _.where(myMarkers, fnFindMarker);
-
-                if (currentMarker.length == 0)
-                    return;
-
-                service.closeInfoWindows();
-                service.panTo(currentMarker[0].getPosition());
-                currentMarker[0].InfoBox.open(map, currentMarker[0]);
-            };
-
-            service.panTo = function (latLng) {
-                map.panTo(latLng);
-            };
-
-            service.plot = function (point, model, options) {
-                if (options.clearPrevious)
-                    service.clearMap();
-
-                var marker = service.createMarker(point, null, google.maps.Animation.DROP);
-
-                if (options.infoBoxTemplate && model)
-                    createInfoBox(marker, options, model);
-
-                myMarkers.push(marker);
-            };
-
-            service.plotPoints = function (points, options) {
-                if (options.clearPrevious)
-                    service.clearMap();
-
-                angular.forEach(points, function (value) {
-                    var marker = service.createMarker(value[0], null, google.maps.Animation.DROP);
-
-                    if (options.infoBoxTemplate && value[1])
-                        createInfoBox(marker, options, value[1]);
-
-                    myMarkers.push(marker);
-                });
+            service.initMap = function (mapId, options) {
+                map = new google.maps.Map(document.getElementById(mapId), options);
             };
 
             service.clearMap = function () {
@@ -65,6 +25,11 @@
                 });
                 myMarkers = [];
             };
+
+            service.panTo = function (latLng) {
+                map.panTo(latLng);
+            };
+
             service.offsetMap = function (options) {
                 if (options.offsetRight) {
                     Common.$timeout(function () {
@@ -83,32 +48,10 @@
                         map.panBy(0, options.offsetBottom);
                     }, 0);
                 }
-
-            service.closeInfoWindows = function () {
-                angular.forEach(myMarkers, function (marker, key) {
-                    if (marker.InfoBox)
-                        marker.InfoBox.close();
-                });
             };
 
             service.convertToGoogleLatLng = function (lat, lng) {
                 return new google.maps.LatLng(lat, lng);
-            };
-
-            service.createMarker = function (googleLatLng, icon, animation) {
-                var optMap = {
-                    map: map,
-                    position: googleLatLng
-                };
-                if (icon)
-                    optMap.icon = icon;
-
-                if (animation)
-                    optMap.animation = animation;
-
-                var marker = new google.maps.Marker(optMap);
-
-                return marker;
             };
 
             service.geocodeAddress = function (address) {
@@ -147,6 +90,73 @@
                 return deferred.promise;
             };
 
+            service.createMarker = function (googleLatLng, icon, animation) {
+                var optMap = {
+                    map: map,
+                    position: googleLatLng
+                };
+                if (icon)
+                    optMap.icon = icon;
+
+                if (animation)
+                    optMap.animation = animation;
+
+                var marker = new google.maps.Marker(optMap);
+
+                return marker;
+            };
+
+            service.plot = function (point, model, options) {
+                if (options.clearPrevious)
+                    service.clearMap();
+
+                var marker = service.createMarker(point, null, google.maps.Animation.DROP);
+
+                if (options.infoBoxTemplate && model)
+                    createInfoBox(marker, options, model);
+
+                myMarkers.push(marker);
+            };
+
+            service.plotPoints = function (points, options) {
+                if (options.clearPrevious)
+                    service.clearMap();
+
+                angular.forEach(points, function (value) {
+                    var marker = service.createMarker(value[0], null, google.maps.Animation.DROP);
+
+                    if (options.infoBoxTemplate && value[1])
+                        createInfoBox(marker, options, value[1]);
+
+                    myMarkers.push(marker);
+                });
+
+                fitMarkerBoundsDebounced();
+            };
+
+            service.openMarkerInfo = function (fnFindMarker) {
+                if (!myMarkers.length)
+                    return;
+
+                var currentMarker = myMarkers.filter(function (marker) {
+                    return fnFindMarker(marker);
+                });
+
+                if (currentMarker.length == 0)
+                    return;
+
+                service.closeInfoWindows();
+                service.panTo(currentMarker[0].getPosition());
+                currentMarker[0].InfoBox.open(map, currentMarker[0]);
+            };
+
+            service.closeInfoWindows = function () {
+                angular.forEach(myMarkers, function (marker, key) {
+                    if (marker.InfoBox)
+                        marker.InfoBox.close();
+                });
+            };
+
             service.createPolygon = function (points) {
                 var invisColor = "#000000";
                 var outlineColor = "#0ABA02";
@@ -164,10 +174,6 @@
                 });
 
                 polygon.setMap(map);
-            };
-
-            service.initMap = function (mapId, options) {
-                map = new google.maps.Map(document.getElementById(mapId), options);
             };
 
             function createInfoBox(marker, options, model) {
