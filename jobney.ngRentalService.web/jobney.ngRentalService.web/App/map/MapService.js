@@ -133,6 +133,10 @@
 
                 fitMarkerBoundsDebounced();
             };
+            
+            service.getMarkerModels = function(markers){
+                return _.map(myMarkers, function(marker){return marker.model});                
+            }
 
             service.openMarkerInfo = function (fnFindMarker) {
                 if (!myMarkers.length)
@@ -216,7 +220,7 @@
                             width: (options.width) ? options.width + 'px' : "280px"
                         },
                         closeBoxMargin: "5px 5px 5px 0",
-                        closeBoxURL: "", //http://cdn1.iconfinder.com/data/icons/mimiGlyphs/16/close_delete.png
+                        closeBoxURL: options.closeImageUrl || "http://cdn1.iconfinder.com/data/icons/mimiGlyphs/16/close_delete.png",
                         infoBoxClearance: new google.maps.Size(1, 1),
                         isHidden: false,
                         pane: "floatPane",
