@@ -3,8 +3,8 @@
 
     var app = angular.module('ngRentalService');
 
-    app.controller('PropertiesNewCtrl', ['$scope', 'Common', 'MapService', 'LayoutManager',
-        function ($scope, Common, MapService, LayoutManager) {
+    app.controller('PropertiesNewCtrl', ['$scope', '$state', 'Common', 'MapService', 'LayoutManager', 'PropertiesService',
+        function ($scope, $state, Common, MapService, LayoutManager, PropertiesService) {
             
             activate();
 
@@ -43,6 +43,12 @@
                         LayoutManager.handleInfoboxOffset();
                     }
                 });
+                
+                $scope.add = function(){
+                    PropertiesService.add($scope.newProperty).then(function(){
+                        $state.transitionTo('properties');
+                    })
+                }
             }
         }]);
 })()
