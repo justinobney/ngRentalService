@@ -31,12 +31,11 @@
 
         LayoutManager.showDrawer = function () {
             this.layouts.flyOut.open('west', true);
-            LayoutManager.handleInfoboxOffset();
+            Common.$broadcast(Common.events.PANEL_OPEN, LayoutManager);
         };
 
         LayoutManager.hideDrawer = function () {
             this.layouts.flyOut.close('west', true);
-            LayoutManager.handleInfoboxOffset();
         };
         
         LayoutManager.redraw = function performRedraw() {

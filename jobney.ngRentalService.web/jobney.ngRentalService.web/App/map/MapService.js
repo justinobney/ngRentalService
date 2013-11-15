@@ -14,6 +14,8 @@
             var geoCache = {};
             var defaultAnimation = google.maps.Animation.DROP;
 
+            bindEvents();
+
             service.initMap = function (mapId, options) {
                 map = new google.maps.Map(document.getElementById(mapId), options);
             };
@@ -248,6 +250,12 @@
                     latlngbounds.extend(myMarkers[i].getPosition());
                 }
                 map.fitBounds(latlngbounds);
+            }
+
+            function bindEvents() {
+                Common.$on(Common.events.PANEL_OPEN, function() {
+                    service.closeInfoWindows();
+                });
             }
 
             return service;
