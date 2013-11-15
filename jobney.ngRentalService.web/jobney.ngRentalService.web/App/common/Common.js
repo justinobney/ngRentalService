@@ -12,9 +12,14 @@
     function common($q, $rootScope, $timeout, CommonConfig, RouteConfig) {
         var throttles = {};
 
+        var events = {
+            PANEL_OPEN: 'panel::open'
+        };
+
         var service = {
             // common angular dependencies
             $broadcast: $broadcast,
+            $on: $on,
             $q: $q,
             $timeout: $timeout,
             // generic
@@ -22,7 +27,8 @@
             debouncedThrottle: debouncedThrottle,
             textContains: textContains,
             coerceToBoolean: coerceToBoolean,
-            routeConfig: RouteConfig
+            routeConfig: RouteConfig,
+            events: events
         };
 
         return service;
@@ -36,6 +42,12 @@
 
         function $broadcast() {
             return $rootScope.$broadcast.apply($rootScope, arguments);
+        }
+
+        function $on(event, fnCallback) {
+            $rootScope.$on(event, function () {
+                fnCallback.apply($rootScope, arguments);
+            });
         }
 
         function debouncedThrottle(key, callback, delay, immediate) {
