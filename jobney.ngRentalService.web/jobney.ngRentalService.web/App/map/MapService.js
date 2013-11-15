@@ -202,6 +202,47 @@
                     return (found) ? found.long_name : '';
                 }
             };
+            
+            service.getStreetViewImage = function (latLng, width, height) {
+                var dfd = Common.$q.defer();
+
+                var point = latLng;
+                var streetViewService = new google.maps.StreetViewService();
+
+                var result = {
+                    success: false,
+                    url: ''
+                };
+
+                streetViewService.getPanoramaByLocation(point, 50, function (streetViewPanoramaData, status) {
+
+                    if (status === google.maps.StreetViewStatus.OK) {
+
+                        var oldPoint = point;
+                        point = streetViewPanoramaData.location.latLng;
+
+                        var heading = google.maps.geometry.spherical.computeHeading(point, oldPoint);
+
+                        var baseUrl = 'http://maps.googleapis.com/maps/api/streetview?sensor=false';
+                        var params = [
+                            'size=' + width + 'x' + height,
+                            'location=' + point,
+                            'heading=' + heading,
+                            'pitch=-0.76'
+                        ];
+
+                        result.success = true;
+                        result.url = baseUrl + '&' + params.join('&');
+
+                    } else {
+                        result.message = "Sorry! Street View is not available.";
+                    }
+
+                    dfd.resolve(result);
+                });
+
+                return dfd.promise;
+            };
 
             function createInfoBox(marker, options, model) {
 
