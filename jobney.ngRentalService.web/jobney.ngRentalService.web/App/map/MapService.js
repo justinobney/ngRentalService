@@ -1,10 +1,10 @@
-﻿(function () {
+﻿(function() {
     'use strict';
 
     var app = angular.module('ngRentalService');
 
     app.service('MapService', ['$http', '$templateCache', '$interpolate', 'Common',
-        function ($http, $templateCache, $interpolate, Common) {
+        function($http, $templateCache, $interpolate, Common) {
             var service = {};
 
             var geocoder;
@@ -16,53 +16,62 @@
 
             bindEvents();
 
-            service.initMap = function (mapId, options) {
+            service.initMap = function(mapId, options) {
                 map = new google.maps.Map(document.getElementById(mapId), options);
             };
 
-            service.clearMap = function () {
+            service.clearMap = function() {
                 service.closeInfoWindows();
-                angular.forEach(myMarkers, function (marker, key) {
+                angular.forEach(myMarkers, function(marker, key) {
                     marker.setMap(null);
                 });
                 myMarkers = [];
             };
 
-            service.panTo = function (latLng) {
+            service.panTo = function(latLng) {
                 map.panTo(latLng);
             };
 
-            service.offsetMap = function (options) {
+            service.offsetMap = function(options) {
                 if (options.offsetRight) {
-                    Common.$timeout(function () {
+                    Common.$timeout(function() {
                         map.panBy((-1 * options.offsetRight), 0);
                     }, 0);
                 } else if (options.offsetLeft) {
-                    Common.$timeout(function () {
+                    Common.$timeout(function() {
                         map.panBy(options.offsetLeft, 0);
                     }, 0);
                 } else if (options.offsetTop) {
-                    Common.$timeout(function () {
+                    Common.$timeout(function() {
                         map.panBy(0, (-1 * options.offsetTop));
                     }, 0);
                 } else if (options.offsetBottom) {
-                    Common.$timeout(function () {
+                    Common.$timeout(function() {
                         map.panBy(0, options.offsetBottom);
                     }, 0);
                 }
             };
 
-            service.convertToGoogleLatLng = function (lat, lng) {
+            service.convertToGoogleLatLng = function(lat, lng) {
                 return new google.maps.LatLng(lat, lng);
             };
 
-            service.geocodeAddress = function (address) {
+            service.geocodeAddress = function(address) {
                 var deferred = Common.$q.defer();
+
+                if (_.isObject(address)) {
+                    address = [
+                        address.address1,
+                        address.address2,
+                        address.city,
+                        address.state,
+                        address.zipcode
+                    ].join(' ');
+                }
 
                 if (geoCache[address]) {
                     deferred.resolve(geoCache[address]);
-                }
-                else {
+                } else {
                     if (angular.isUndefined(geocoder)) {
                         geocoder = new google.maps.Geocoder();
                     }
@@ -79,20 +88,20 @@
                                 geoCache[address] = results[0].geometry.location;
                                 deferred.resolve(geoCache[address]);
                             }
-                        }
-                        else {
+                        } else {
                             deferred.reject("No results found");
                         }
-                    }
-                    else {
+                    } else {
                         deferred.reject("Geocode was not successful for the following reason: " + status);
                     }
-                };
+                }
+
+                ;
 
                 return deferred.promise;
             };
 
-            service.createMarker = function (googleLatLng, icon, animation) {
+            service.createMarker = function(googleLatLng, icon, animation) {
                 var optMap = {
                     map: map,
                     position: googleLatLng
@@ -108,7 +117,7 @@
                 return marker;
             };
 
-            service.plot = function (point, model, options) {
+            service.plot = function(point, model, options) {
                 if (options.clearPrevious)
                     service.clearMap();
 
@@ -120,11 +129,11 @@
                 myMarkers.push(marker);
             };
 
-            service.plotPoints = function (points, options) {
+            service.plotPoints = function(points, options) {
                 if (options.clearPrevious)
                     service.clearMap();
 
-                angular.forEach(points, function (value) {
+                angular.forEach(points, function(value) {
                     var marker = service.createMarker(value[0], null, google.maps.Animation.DROP);
 
                     if (options.infoBoxTemplate && value[1])
@@ -135,16 +144,15 @@
 
                 fitMarkerBoundsDebounced();
             };
-            
-            service.getMarkerModels = function(markers){
-                return _.map(myMarkers, function(marker){return marker.model});                
-            }
 
-            service.openMarkerInfo = function (fnFindMarker) {
+            service.getMarkerModels = function(markers) {
+                return _.map(myMarkers, function(marker) { return marker.model; });
+            };
+            service.openMarkerInfo = function(fnFindMarker) {
                 if (!myMarkers.length)
                     return;
 
-                var currentMarker = myMarkers.filter(function (marker) {
+                var currentMarker = myMarkers.filter(function(marker) {
                     return fnFindMarker(marker);
                 });
 
@@ -156,18 +164,18 @@
                 currentMarker[0].InfoBox.open(map, currentMarker[0]);
             };
 
-            service.closeInfoWindows = function () {
-                angular.forEach(myMarkers, function (marker, key) {
+            service.closeInfoWindows = function() {
+                angular.forEach(myMarkers, function(marker, key) {
                     if (marker.InfoBox)
                         marker.InfoBox.close();
                 });
             };
 
-            service.createPolygon = function (points) {
+            service.createPolygon = function(points) {
                 var invisColor = "#000000";
                 var outlineColor = "#0ABA02";
 
-                points = points.map(function (latLong) {
+                points = points.map(function(latLong) {
                     return new google.maps.LatLng(latLong[0], latLong[1]);
                 }); // Construct the polygon
                 var polygon = new google.maps.Polygon({
@@ -182,7 +190,7 @@
                 polygon.setMap(map);
             };
 
-            service.convertPlaceResultToPlace = function (placeResult) {
+            service.convertPlaceResultToPlace = function(placeResult) {
                 var place = {
                     streetNumber: find('street_number'),
                     route: find('route'),
@@ -198,12 +206,12 @@
                     var found = _.find(placeResult.address_components, function(val) {
                         return val.types.indexOf(typeName) > -1;
                     });
-                    
+
                     return (found) ? found.long_name : '';
                 }
             };
-            
-            service.getStreetViewImage = function (latLng, width, height) {
+
+            service.getStreetViewImage = function(latLng, width, height) {
                 var dfd = Common.$q.defer();
 
                 var point = latLng;
@@ -214,7 +222,7 @@
                     url: ''
                 };
 
-                streetViewService.getPanoramaByLocation(point, 50, function (streetViewPanoramaData, status) {
+                streetViewService.getPanoramaByLocation(point, 50, function(streetViewPanoramaData, status) {
 
                     if (status === google.maps.StreetViewStatus.OK) {
 
@@ -248,7 +256,7 @@
 
                 $http.get(options.infoBoxTemplate, {
                     cache: $templateCache
-                }).success(function (tplContent) {
+                }).success(function(tplContent) {
                     var compiledTemplate = $interpolate(tplContent)(model);
 
                     var offSet = (options.width) ? -1 * (options.width / 2) : -140;
@@ -276,7 +284,7 @@
 
                     marker.model = model;
 
-                    google.maps.event.addListener(marker, "click", function (e) {
+                    google.maps.event.addListener(marker, "click", function(e) {
                         service.closeInfoWindows();
                         ib.open(map, this);
                     });
