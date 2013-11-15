@@ -8,6 +8,10 @@
 
             activate();
 
+            $scope.setSelected = function (src) {
+                $scope.selectedImage = src;
+            };
+
             function activate() {
                 var id = $stateParams.id;
 
@@ -34,7 +38,7 @@
                 
                 var handleStreetViewImageComplete = function(result) {
                     if (result.success)
-                        $scope.locationStreetView = result.url;
+                        $scope.selectedImage = $scope.locationStreetView = result.url;
                 };
                 
                 MapService.geocodeAddress(address).then(handleGeocodeComplete);
