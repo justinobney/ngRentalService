@@ -25,27 +25,26 @@
                     MapService.clearMap();
                         
                     angular.forEach($scope.properties, function (property) {
-                        var address = property.address1;
-                        MapService.geocodeAddress(address).then(function (location) {
+                        MapService.geocodeAddress(property).then(function (location) {
                             var geocodedPlace = [location, property];
                             plotLocation([geocodedPlace]);
                         });
                     });    
                 });
-                
-                $scope.$watchCollection('properties', function(cur, prev){
-                    if(cur){
+
+                $scope.$watchCollection('properties', function(cur, prev) {
+                    if (cur) {
                         var markerModels = MapService.getMarkerModels();
-                        _.forEach(cur, function(prop){
-                            if(!_.find(markerModels, prop)){
-                                MapService.geocodeAddress(prop.address1).then(function (location) {
+                        _.forEach(cur, function(prop) {
+                            if (!_.find(markerModels, prop)) {
+                                MapService.geocodeAddress(prop).then(function(location) {
                                     var geocodedPlace = [location, prop];
                                     plotLocation([geocodedPlace]);
                                 });
                             }
-                        })
+                        });
                     }
-                })
+                });
             }
 
             function plotLocation(placeWithLocationArray) {

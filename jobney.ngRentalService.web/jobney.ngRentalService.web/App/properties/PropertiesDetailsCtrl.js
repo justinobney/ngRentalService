@@ -22,16 +22,6 @@
             }
 
             function getAddressImage() {
-                // geocode address
-                var address = [
-                    $scope.newProperty.address1,
-                    $scope.newProperty.address2,
-                    $scope.newProperty.city,
-                    $scope.newProperty.state,
-                    $scope.newProperty.zipcode
-                ].join(' ');
-
-                
                 var handleGeocodeComplete = function(location) {
                     MapService.getStreetViewImage(location, 600, 400).then(handleStreetViewImageComplete);
                 };
@@ -41,7 +31,7 @@
                         $scope.selectedImage = $scope.locationStreetView = result.url;
                 };
                 
-                MapService.geocodeAddress(address).then(handleGeocodeComplete);
+                MapService.geocodeAddress($scope.newProperty).then(handleGeocodeComplete);
             }
         }]);
 })()
