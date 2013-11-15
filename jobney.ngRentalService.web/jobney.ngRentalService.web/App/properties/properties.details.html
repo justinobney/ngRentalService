@@ -9,9 +9,13 @@
             <div data-ng-include="'app/properties/properties.formbody.html'"></div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <a class="btn btn-primary" data-ng-click="save()">Save</a>
+                    <a class="btn btn-primary col-sm-offset-7 col-sm-5" data-ng-click="save()">Save</a>
                 </div>
             </div>
         </form>
+        <hr />
+        <div class="col-sm-6">
+            <img ng-src="{{locationStreetView}}" class="img-responsive img-rounded" />
+        </div>
     </div>
 </div>
