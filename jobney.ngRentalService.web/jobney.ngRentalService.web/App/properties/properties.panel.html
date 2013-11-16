@@ -5,7 +5,12 @@
         </a>
         <div class="clearfix"></div>
     </li>
-    <li data-ng-repeat="property in properties" class="list-group-item">
+    <li class="list-group-item header">
+        <div class="col-sm-12">
+            <input type="text" class="form-control" placeholder="filter..." ng-model="search.text">
+        </div>
+    </li>
+    <li data-ng-repeat="property in properties | filter:searchProperties" class="list-group-item">
         <div class="row">
             <a ui-sref="properties" ng-click="showInfo({{property}})" class="property-link">
                 <div class="col-xs-3">
@@ -13,9 +18,9 @@
                 </div>
                 <div class="col-xs-9">
                     <cite title="Address">{{property.address1}}
-                    <br />
+                        <br />
                         {{property.city}}, {{property.state}}
-                    <br />
+                        <br />
                         {{property.zipcode}}
                     </cite>
                 </div>

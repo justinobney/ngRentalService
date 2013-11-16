@@ -9,11 +9,18 @@
             var config = {
                 propertyInfoWindowTemplate: Common.routeConfig.base + 'App/properties/properties.infoWindow.html'
             };
-
+            $scope.search = {};
             $scope.showInfo = function (property) {
                 MapService.openMarkerInfo(function (marker) {
                     return marker.model.id == property.id;
                 });
+            };
+
+            $scope.searchProperties = function (property) {
+                if (!$scope.search.text)
+                    return true;
+                
+                return angular.toJson(property).indexOf($scope.search.text) > -1;
             };
 
             activate();
