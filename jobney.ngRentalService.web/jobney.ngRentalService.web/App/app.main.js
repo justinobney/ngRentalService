@@ -21,6 +21,6 @@
 
             MapService.initMap('map_canvas', mapOptions);
 
-            $state.transitionTo('messages');
+            $state.transitionTo('properties');
         }]);
 })();
