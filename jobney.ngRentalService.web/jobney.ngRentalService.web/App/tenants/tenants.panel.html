@@ -1,0 +1,43 @@
+﻿<ul class="list-group">
+    <!--data-ng-controller="PropertiesPanelCtrl"-->
+    <li class="list-group-item header">Tenants
+        <a ui-sref="properties.new" class="pull-right btn btn-xs btn-default">
+            <i class="fa fa-plus-circle"></i>Add Tenant
+        </a>
+        <div class="clearfix"></div>
+    </li>
+    <li class="list-group-item header">
+        <div class="col-sm-12">
+            <input type="text" class="form-control" placeholder="filter..." ng-model="search.text">
+        </div>
+    </li>
+    <li class="list-group-item">
+        <!--data-ng-repeat="property in properties | filter:searchProperties"-->
+        <div class="row">
+            <div class="col-xs-3">
+                <img ng-src="http://lorempixel.com/150/150/people/" alt="" class="img-circle img-responsive" />
+            </div>
+            <div class="col-xs-7">
+                <strong>John Smith</strong>
+                <br />
+                <cite>
+                    123 Street
+                    <br />
+                    Baton Rouge, LA
+                    <br />
+                    70817
+                </cite>
+            </div>
+            <div class="col-xs-2">
+                <ul class="actions">
+                    <li>
+                        <a href="#"><i class="fa fa-map-marker"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-edit"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </li>
+</ul>
