@@ -1,8 +1,8 @@
-﻿<ul class="list-group">
-    <!--data-ng-controller="PropertiesPanelCtrl"-->
+﻿<ul class="list-group" data-ng-controller="TenantsPanelCtrl">
     <li class="list-group-item header">Tenants
         <a ui-sref="properties.new" class="pull-right btn btn-xs btn-default">
-            <i class="fa fa-plus-circle"></i>Add Tenant
+            <i class="fa fa-plus-circle"></i>
+            Add Tenant
         </a>
         <div class="clearfix"></div>
     </li>
@@ -11,21 +11,20 @@
             <input type="text" class="form-control" placeholder="filter..." ng-model="search.text">
         </div>
     </li>
-    <li class="list-group-item">
-        <!--data-ng-repeat="property in properties | filter:searchProperties"-->
+    <li class="list-group-item" data-ng-repeat="tenant in tenants | filter:searchTenants">
         <div class="row">
             <div class="col-xs-3">
-                <img ng-src="http://lorempixel.com/150/150/people/" alt="" class="img-circle img-responsive" />
+                <img ng-src="http://lorempixel.com/150/150/people/{{tenant.id}}" alt="" class="img-circle img-responsive" />
             </div>
             <div class="col-xs-7">
-                <strong>John Smith</strong>
+                <strong>{{tenant.name}}</strong>
                 <br />
                 <cite>
-                    123 Street
+                    {{tenant.address}}
                     <br />
-                    Baton Rouge, LA
+                    {{tenant.city}}, {{tenant.state}}
                     <br />
-                    70817
+                    {{tenant.zipcode}}
                 </cite>
             </div>
             <div class="col-xs-2">
@@ -34,7 +33,7 @@
                         <a href="#"><i class="fa fa-map-marker"></i></a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-edit"></i></a>
+                        <a ng-href="#/tenants/{{tenant.id}}"><i class="fa fa-edit"></i></a>
                     </li>
                 </ul>
             </div>

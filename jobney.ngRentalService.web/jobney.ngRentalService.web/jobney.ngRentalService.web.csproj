@@ -167,7 +167,11 @@
     <Content Include="App\properties\PropertiesPanelCtrl.js" />
     <Content Include="App\properties\PropertiesService.js" />
     <Content Include="App\settings\settings.panel.html" />
+    <Content Include="App\tenants\TanantsService.js" />
+    <Content Include="App\tenants\TenantsDetailsCtrl.js" />
+    <Content Include="App\tenants\tenants.details.html" />
     <Content Include="App\tenants\tenants.panel.html" />
+    <Content Include="App\tenants\TenantsPanelCtrl.js" />
     <Content Include="bootstrapper.js" />
     <Content Include="Assets\css\app.css" />
     <Content Include="Assets\css\bootstrap.css" />
@@ -221,6 +225,7 @@
     <Content Include="Assets\css\font\Univers-57-Condensed-webfont.eot" />
     <Content Include="Assets\css\font\Univers-57-Condensed-webfont.ttf" />
     <Content Include="Assets\css\font\Univers-57-Condensed-webfont.woff" />
+    <Content Include="App\tenants\tenants.js" />
     <None Include="Properties\PublishProfiles\ngRentalManager - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\ngRentalManager - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
