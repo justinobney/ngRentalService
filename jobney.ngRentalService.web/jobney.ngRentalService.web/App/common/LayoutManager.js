@@ -9,6 +9,8 @@
         var uiStateMap = {};
         var mgr = window.__layoutMgr;
 
+        bindEvents();
+
         LayoutManager.panels = {
             sideNav: mgr.west,
             appHeader: mgr.center.children.layout1.north,
@@ -36,6 +38,7 @@
 
         LayoutManager.hideDrawer = function () {
             this.layouts.flyOut.close('west', true);
+            uiStateMap.drawer = false;
         };
         
         LayoutManager.redraw = function performRedraw() {
@@ -92,6 +95,12 @@
             }
 
             MapService.offsetMap(opts);
+        }
+
+        function bindEvents() {
+            Common.$on(Common.events.MARKER_OPEN, function (marker) {
+                LayoutManager.hideDrawer();
+            });
         }
 
         return LayoutManager;

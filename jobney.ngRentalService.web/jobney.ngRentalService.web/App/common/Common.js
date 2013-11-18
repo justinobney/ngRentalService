@@ -13,7 +13,8 @@
         var throttles = {};
 
         var events = {
-            PANEL_OPEN: 'panel::open'
+            PANEL_OPEN: 'panel::open',
+            MARKER_OPEN: 'marker::open'
         };
 
         var service = {

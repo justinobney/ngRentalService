@@ -145,9 +145,10 @@
                 fitMarkerBoundsDebounced();
             };
 
-            service.getMarkerModels = function(markers) {
+            service.getMarkerModels = function() {
                 return _.map(myMarkers, function(marker) { return marker.model; });
             };
+            
             service.openMarkerInfo = function(fnFindMarker) {
                 if (!myMarkers.length)
                     return;
@@ -287,6 +288,7 @@
                     google.maps.event.addListener(marker, "click", function(e) {
                         service.closeInfoWindows();
                         ib.open(map, this);
+                        Common.$broadcast(Common.events.MARKER_OPEN, this);
                     });
                 });
             }
@@ -304,6 +306,10 @@
             function bindEvents() {
                 Common.$on(Common.events.PANEL_OPEN, function() {
                     service.closeInfoWindows();
+                });
+                
+                Common.$on(Common.events.MARKER_OPEN, function (event, marker) {
+                    service.panTo(marker.getPosition());
                 });
             }
 
